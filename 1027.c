@@ -21,7 +21,7 @@ int main(void) {
                if (j == i) continue;
                for (int k = min(i, j) + 1; k < max(i, j); k++) {
                     //printf("b[k] : %d, b[i] : %d, b[j] : %d, i - j : %d\n", b[k], b[i], b[j], i - j);
-                    if ((double)b[k] >= min(b[i], b[j]) + ((double)abs((b[i] - b[j])) / abs((i - j))) * (k - min(i, j))) {
+                    if (b[k] >= min(b[i], b[j]) + (abs(b[i] - b[j])) / abs(i - j) * (k - min(i, j))) {
                          t = 0;
                          break;
                     }
