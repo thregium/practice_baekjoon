@@ -12,21 +12,21 @@
 */
 
 typedef struct building {
-     int d;
-     int c;
+     int d; //이 건물의 건설 시간
+     int c; //이 건물까지의 건설시간
      int prevs;
      int nexts;
      struct building* prev[1024];
      struct building* next[1024];
 } building;
 
-building* allb[1024];
+building* allb[1024]; //각 건물들의 정보 저장
 
 int build(building* w) {
-     if (w->c >= 0) return w->c;
+     if (w->c >= 0) return w->c; //이 건물까지의 건설시간이 정해진 경우
      int t = 0;
      for (int i = 0; i < w->prevs; i++) {
-          if(build(w->prev[i]) > t) t = build(w->prev[i]);
+          if(build(w->prev[i]) > t) t = build(w->prev[i]); //이전 건물까지의 건설시간 가운데 가장 큰 것을 선택
      }
      return w->c = t + w->d;
 }
@@ -55,6 +55,7 @@ int main(void) {
                allb[x]->nexts++;
                allb[y]->prev[allb[y]->prevs] = allb[x];
                allb[y]->prevs++;
+			   //건설 순서 정보 저장
           }
           scanf("%d", &w);
           printf("%d\n", build(allb[w]));

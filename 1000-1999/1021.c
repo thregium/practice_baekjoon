@@ -35,12 +35,14 @@ int main(void) {
                a++;
           }
           else if (x <= (rear - front) / 2) {
+              //뒤쪽 회전
                d[rear] = d[front];
                front++;
                rear++;
                c++;
           }
           else {
+              //앞쪽 회전
                d[front - 1] = d[rear - 1];
                front--;
                rear--;

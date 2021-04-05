@@ -10,14 +10,15 @@
 현재 자릿수에서 발견하지 못한 경우 그 자리를 0으로 바꾸고 자릿수를 한칸 앞으로 옮긴다. 이미 맨 앞자리인 경우 다시 한번 0부터 확인 후 반대 방향으로 이동하기 시작한다.
 다시 돌아와서 맨 마지막 자리에 도달하면 현재 상태의 카운터와 원래의 카운터의 수를 비교해 (현재 카운터 - 원래 카운터 + 음수인 경우 10^자릿수)를 출력한다.
 
-주요 알고리즘 : 수학, 다이나믹 프로그래밍?
+주요 알고리즘 : 수학, 그리디 알고리즘?, 백트래킹?, 다이나믹 프로그래밍?
 */
 
-int numlines[10] = { 6, 2, 5, 5, 4, 5, 6, 3, 7, 5 };
+int numlines[10] = { 6, 2, 5, 5, 4, 5, 6, 3, 7, 5 }; //각 숫자별 선분의 수
 
-int len;
+int len; //현재 숫자의 길이
 
 long long int getdiff(char* a, char* b) {
+	//현재 값과 원래 값의 차이를 반환한다
      long long int an = 0, bn = 0;
      for (int i = 0; i < len; i++) {
           an *= 10;
@@ -35,6 +36,7 @@ long long int getdiff(char* a, char* b) {
 }
 
 int getlines(char* n, int d) {
+	//전체 선분의 수를 센다
      int l = 0;
      for (int i = 0; i <= d; i++) l += numlines[n[i]];
      return l;
@@ -49,6 +51,7 @@ long long int getnum(char* n, int lines) {
           for (int i = p[d] + 1; i < 10; i++) {
                p[d] = i;
                if (lines - getlines(p, d) >= 2 * (len - d - 1) && lines - getlines(p, d) <= 7 * (len - d - 1)) {
+				   //현재 위치까지 봤을 때 가능한 경우
                     find = 1;
                     if (getlines(p, len - 1) == lines) {
                          return getdiff(p, n);

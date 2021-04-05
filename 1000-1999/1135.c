@@ -8,6 +8,8 @@
 해결 방법 : 트리를 후위순회하며 말단부터 해당 사원의 모든 부하에게 뉴스를 전하는데 걸리는 시간을 구한다. 최말단 사원의 경우 부하가 없으므로 0초이고,
 부하가 있는 경우에는 시간이 오래 걸리는 사원부터 순서대로 전화를 건다. 이 때 자신이 전화를 거는데 걸린 시간과 해당 사원이 부하에게 전하는데 걸리는 시간의 합이
 가장 큰 것이 자신의 전달 시간이 된다. 이를 반복하여 사장까지 도달하면 사장의 전달 시간을 출력한다.
+
+주요 알고리즘 : 다이나믹 프로그래밍, 트리에서의 다이나믹 프로그래밍, 그리디 알고리즘
 */
 
 int inf[64][64]; //부하의 목록
@@ -18,6 +20,7 @@ int big(int a, int b) {
 }
 
 int infcmp(const void* a, const void* b) {
+	//부하에게 뉴스를 전하는 시간이 긴 순으로 정렬
      int ai = tm[*(int*)a];
      int bi = tm[*(int*)b];
 
@@ -27,13 +30,13 @@ int infcmp(const void* a, const void* b) {
 int makeinfs(int a) {
      int x = 0;
      for (int i = 1; i <= inf[a][0]; i++) {
-          makeinfs(inf[a][i]);
+          makeinfs(inf[a][i]); //각각의 부하로 재귀호출
      }
-     if (inf[a][0] == 0) return tm[a] = 0;
+     if (inf[a][0] == 0) return tm[a] = 0; //부하가 없는 경우 뉴스를 전하는 시간은 0
      
      qsort(&inf[a][1], inf[a][0], sizeof(int), infcmp);
      for (int i = 1; i <= inf[a][0]; i++) {
-          x = big(x, i + tm[inf[a][i]]);
+          x = big(x, i + tm[inf[a][i]]); //부하가 있다면 뉴스를 전하는데 오래 걸리는 순으로 전화를 걸어가며 그들 중 가장 오래 걸리는 경우의 값을 선택
      }
      return tm[a] = x;
 }

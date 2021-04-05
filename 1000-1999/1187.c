@@ -25,6 +25,7 @@ int* solve(int k, int* a) {
     */
 
     if (k == 1) {
+		//k가 1인 경우
         int* xt = malloc(sizeof(int) * 2);
         if ((a[0] + a[1]) % 2 == 0) {
             xt[0] = a[0];
@@ -41,13 +42,13 @@ int* solve(int k, int* a) {
         free(a);
         return xt;
     }
-    int* x = malloc(sizeof(int) * (1 << k)), *y = malloc(sizeof(int) * (1 << k));
+    int* x = malloc(sizeof(int) * (1 << k)), *y = malloc(sizeof(int) * (1 << k)); //두 배열을 동적할당 한다.
     for (int i = 0; i < (1 << k) - 1; i++) {
         x[i] = a[i];
-        y[i] = a[i + (1 << k) - 1];
+        y[i] = a[i + (1 << k) - 1]; //두 배열을 앞뒤로 나눈다.
     }
-    x = solve(k - 1, x);
-    y = solve(k - 1, y);
+    x = solve(k - 1, x); //위에서 나눈 배열을 인자로 동적호출한다.
+    y = solve(k - 1, y); //상동
 
     int* z = malloc(sizeof(int) * ((1 << k) - 1));
     int* xc = calloc(1, sizeof(int) * (1 << k)), * yc = calloc(1, sizeof(int) * (1 << k));
@@ -71,7 +72,7 @@ int* solve(int k, int* a) {
         if(!xyr) z[zp++] = a[i];
     }
     free(xc), free(yc);
-    z = solve(k - 1, z);
+    z = solve(k - 1, z); //위에서 고르지 않은 배열을 인자로 동적호출한다.
     for (int i = 0; i < (1 << (k - 1)); i++) {
         xs += x[i];
         ys += y[i];
@@ -97,6 +98,7 @@ int* solve(int k, int* a) {
             r[i * 2 + 1] = z[i];
         }
     }
+	//경우에 따라서 위의 배열을 토대로 한 결과 배열을 반환한다.
     free(x);
     free(y);
     free(z);
@@ -113,7 +115,7 @@ int main(void) {
     }
     r = malloc(sizeof(int) * n);
     for (int i = n; i > 0; i >>= 1) {
-       k++;
+       k++; //N이 2의 몇 승인지 구한다.
     }
     r = solve(k - 1, arr);
     int rs = 0;
