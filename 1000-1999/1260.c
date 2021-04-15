@@ -3,6 +3,14 @@
 #define MAXV 1024
 #define MAXQ 65536
 
+/*
+문제 : 그래프를 DFS와 BFS로 순회한 결과를 각각 출력한다.
+
+해결 방법 : DFS와 BFS를 구현한다.
+
+주요 알고리즘 : 그래프 이론, DFS, BFS
+*/
+
 int visited[MAXV] = { 0, };
 
 typedef struct {
@@ -12,12 +20,12 @@ typedef struct {
 
 typedef struct vertex {
      int num;
-     struct vertex* link;
+     struct vertex* link; //해당 정점에 연결된 간선 목록
 } vertex;
 
 typedef struct graph {
      int v;
-     vertex* adj[MAXV];
+     vertex* adj[MAXV]; //인접리스트
 } graph;
 
 void newqueue(queue* q) {
