@@ -1,6 +1,8 @@
 #include <stdio.h>
 
 /*
+https://www.acmicpc.net/problem/1000
+
 문제 : A와 B가 주어질 때 A + B를 출력한다.
 
 해결 방법 : A와 B를 입력받고 A + B를 출력한다.
