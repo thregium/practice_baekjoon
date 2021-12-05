@@ -10,8 +10,12 @@ N(N <= 1000)번째 이진수의 연속한 0 그룹 수를 구한다.
 출처 : SEERC 2005 G번
 '''
 
-n = int(input())
 mem = [0, 1]
-for i in range(2, n):
+for i in range(2, 1000):
     mem.append(mem[-1] + mem[-2] * 2)
-print(mem[n - 1])
+while True:
+    try:
+        n = int(input())
+    except:
+        break
+    print(mem[n])

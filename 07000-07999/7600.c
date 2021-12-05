@@ -19,7 +19,7 @@ int main(void) {
     int r;
     while (1) {
         fgets(s, 256, stdin);
-        if (s[0] == '#') break;
+        if (s[0] == '#' && s[1] == '\n') break;
         r = 0;
         for (int i = 0; s[i]; i++) {
             if (isupper(s[i])) cnt[s[i] - 'A']++;
