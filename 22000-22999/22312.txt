@@ -1,0 +1,28 @@
+X#XXXXXXX##XX#XXXXXX
+XXXX###XX#XX###X#XXX
+XXXX#XXX#XX######XXX
+XXXXXXX#X#XXX####X#X
+####XX###X#########X
+X####X#XX#XXX######X
+XX#X#X#XXXXXX####X#X
+XXXXXX#X#XXXX#X#XXXX
+XXXXXXX#XX...XXXXXXX
+X#XXXX.XXXX.#XXX####
+##XX#X.#XX....XXX###
+##X#XX.#XXX##.#XXX##
+#XXX#X.##XXX..XXX###
+##XXXX..XXX#.##X#X##
+####XXX.##X.....XXX#
+###X#XX....####...X#
+#XX###XX.#...#..#XXX
+XXX#X#X#.###...XX#XX
+XXXXXX......XX#XX#X#
+X#XXX#XXX##.XXXXXXXX
+----------------------------------------------------------------
+문제 : 주어진 원래 미로에서 #를 .로 바꾸어 미로의 밖에서 가장 먼 곳의 거리가 33 이상이 되도록 한다.
+
+해결 방법 : 직접 만들어 본다.
+
+주요 알고리즘 : 애드 혹?
+
+출처 : IOI 2010 7-7번
