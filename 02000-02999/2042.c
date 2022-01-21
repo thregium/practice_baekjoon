@@ -6,6 +6,8 @@
 
 해결 방법 : 세그먼트 트리를 통해 일정 구간의 합을 저장한다. 한 원소를 갱신할 때에는 리프 노드에서 역순으로 계산하고, 구간의 합을 출력할 때에는
 구하고자 하는 구간이 현재 노드의 구간을 포함하는 경우 노드의 값을 반환, 겹치지 않는 경우 0을 반환, 둘 다 아닌 경우에는 양쪽 자식 노드의 합을 반환한다.
+
+주요 알고리즘 : 자료 구조, 세그먼트 트리
 */
 
 long long s[1048576];
@@ -66,11 +68,10 @@ long long getsum(stree* root, int x, int y) {
 }
 
 int main(void) {
-     int n, m, k;
-     long long a, b, c;
-     scanf("%d %d %d", &n, &m, &k);
+     long long n, m, k, a, b, c;
+     scanf("%lld %lld %lld", &n, &m, &k);
      for (int i = 0; i < n; i++) {
-          scanf("%d", &s[i]);
+          scanf("%lld", &s[i]);
      }
      stree* root;
      root = calloc(1, sizeof(stree));
