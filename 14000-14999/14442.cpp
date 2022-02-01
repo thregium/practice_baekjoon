@@ -20,7 +20,7 @@ queue<tuple<int, int, int, int>> q;
 
 int isvalid(int x, int y, int z) {
     if (x <= 0 || y <= 0 || x > n || y > m) return 0;
-    if (vis[x][y][z] || (map[x][y] == '1' && z == k)) return 0;
+    if (vis[x][y][z] || z > k) return 0;
     return map[x][y] - '0' + 1;
 }
 
@@ -40,7 +40,7 @@ int bfs(int x, int y) {
                 q.push(make_tuple(x + dxy[i][0], y + dxy[i][1], b, d + 1));
                 vis[x + dxy[i][0]][y + dxy[i][1]][b] = 1;
             }
-            else if (isvalid(x + dxy[i][0], y + dxy[i][1], b) == 2) {
+            else if (isvalid(x + dxy[i][0], y + dxy[i][1], b + 1) == 2) {
                 q.push(make_tuple(x + dxy[i][0], y + dxy[i][1], b + 1, d + 1));
                 vis[x + dxy[i][0]][y + dxy[i][1]][b + 1] = 1;
             }
